@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Locale;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -23,21 +21,20 @@ public class CarController {
         Car car = carService.findById(carId);
         car.add(
                 linkTo(methodOn(CarController.class).findCar(car.getCarId())).withSelfRel(),
-                linkTo(methodOn(CarController.class).saveCar(car, null)).withRel("saveCar"),
-                linkTo(methodOn(CarController.class).updateCar(car, null)).withRel("updateCar"),
+                linkTo(methodOn(CarController.class).saveCar(car)).withRel("saveCar"),
+                linkTo(methodOn(CarController.class).updateCar(car)).withRel("updateCar"),
                 linkTo(methodOn(CarController.class).deleteCar(car.getCarId())).withRel("deleteCar"));
         return ResponseEntity.ok(car);
     }
 
-
     @PostMapping
-    public ResponseEntity<String> saveCar(@RequestBody Car request, @RequestHeader(value = "Accept-Language", required = false) Locale locale) {
-        return ResponseEntity.ok(carService.save(request, locale));
+    public ResponseEntity<Car> saveCar(@RequestBody Car request) {
+        return ResponseEntity.ok(carService.save(request));
     }
 
     @PutMapping
-    public ResponseEntity<String> updateCar(@RequestBody Car request, @RequestHeader(value = "Accept-Language", required = false) Locale locale) {
-        return ResponseEntity.ok(carService.update(request, locale));
+    public ResponseEntity<Car> updateCar(@RequestBody Car request) {
+        return ResponseEntity.ok(carService.update(request));
     }
 
     @DeleteMapping("/{carId}")

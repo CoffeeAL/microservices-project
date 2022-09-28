@@ -1,12 +1,12 @@
 package com.loiko.alex.dreamcarrent;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DreamCarRentApplicationTests {
+class CarServiceApplicationTests {
 
-    @Test
+    @Disabled
     void contextLoads() {
     }
 

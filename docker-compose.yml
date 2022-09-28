@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  dreamcarservice:
-    image: dreamcar/dreamcar-rent:0.0.1-SNAPSHOT
-    ports:
-      - "8080:8080"
-    environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
